@@ -1,5 +1,6 @@
 import requests
-
+import json
+from pathlib import Path
 
 def fetch_weather(latitude: float, longitude: float) -> dict:
     url = "https://api.open-meteo.com/v1/forecast"
@@ -26,4 +27,13 @@ def fetch_weather(latitude: float, longitude: float) -> dict:
 
 if __name__ == "__main__":
     weather_data = fetch_weather(48.8566, 2.3522)
-    print(weather_data)
+
+    output_dir = Path("data/raw")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    output_file = output_dir / "weather_raw.json"
+
+    with output_file.open("w", encoding="utf-8") as file:
+        json.dump(weather_data, file, ensure_ascii=False, indent=4)
+
+    print(f"Données météo sauvegardées dans : {output_file}")
