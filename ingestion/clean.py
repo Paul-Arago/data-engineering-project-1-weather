@@ -1,9 +1,6 @@
-
 import json
 from pathlib import Path
-
 import pandas as pd
-
 
 def clean_weather_data(input_file: str) -> pd.DataFrame:
     with Path(input_file).open("r", encoding="utf-8") as file:

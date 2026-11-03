@@ -1,9 +1,6 @@
-
 import pandas as pd
 import pytest
-
 from ingestion.clean import validate_weather_data
-
 
 def test_valid_weather_data():
     df = pd.DataFrame({
